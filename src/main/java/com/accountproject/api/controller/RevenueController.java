@@ -11,7 +11,7 @@ import com.accountproject.api.dto.RevenueDto;
 import com.accountproject.api.service.RevenueService;
 
 @RestController
-@RequestMapping(value = "v1/api/user/revenue")
+@RequestMapping(value = "v1/api/business/revenue")
 public class RevenueController {
 
 	@Autowired

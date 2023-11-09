@@ -7,5 +7,7 @@ import com.accountproject.api.entity.CostOfGoodsSold;
 
 @Repository
 public interface CostOfGoodsSoldRepo extends JpaRepository<CostOfGoodsSold, Integer> {
+	
+	
 
 }

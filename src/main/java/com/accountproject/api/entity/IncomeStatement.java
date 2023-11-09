@@ -1,10 +1,13 @@
 package com.accountproject.api.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +22,10 @@ public class IncomeStatement {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "income_statment_id")
 	private Integer incomeStatmentId;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "business_id", referencedColumnName = "business_id")
+	private BusinessDetails businessDetails;
 	
 	@Column(name = "revenues")
 	private Double revenues;

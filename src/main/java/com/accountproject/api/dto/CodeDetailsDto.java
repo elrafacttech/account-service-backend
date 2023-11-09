@@ -10,5 +10,9 @@ public abstract class CodeDetailsDto {
 	private Integer code;
 
 	private String codeDescription;
+	
+	private Integer businessid;
+	
+	private String drcr;
 
 }

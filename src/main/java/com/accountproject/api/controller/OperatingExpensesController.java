@@ -11,7 +11,7 @@ import com.accountproject.api.dto.OperatingExpensesDto;
 import com.accountproject.api.service.OperatingExpensesService;
 
 @RestController
-@RequestMapping(value = "v1/api/user/operatingExpenses")
+@RequestMapping(value = "v1/api/business/operatingExpenses")
 public class OperatingExpensesController {
 
 	@Autowired

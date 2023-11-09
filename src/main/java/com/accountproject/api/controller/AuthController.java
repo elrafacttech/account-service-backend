@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accountproject.api.dto.req.AuthRequestDto;
+import com.accountproject.api.dto.res.LoginResDto;
 import com.accountproject.api.service.UserService;
 
 @RestController
@@ -18,11 +19,8 @@ public class AuthController {
 	UserService userService;
 
 	@PostMapping("/login")
-	public ResponseEntity<String> userLogin(@RequestBody AuthRequestDto authRequestDto) {
-		String msg = userService.loginUser(authRequestDto);
-		if (msg == null) {
-			return ResponseEntity.ok("Error");
-		}
-		return ResponseEntity.ok(msg);
+	public ResponseEntity<LoginResDto> userLogin(@RequestBody AuthRequestDto authRequestDto) {
+		LoginResDto resDto = userService.loginUser(authRequestDto);
+		return ResponseEntity.ok(resDto);
 	}
 }

@@ -7,5 +7,6 @@ import com.accountproject.api.entity.Revenue;
 
 @Repository
 public interface RevenueRepo extends JpaRepository<Revenue, Integer> {
+	
 
 }

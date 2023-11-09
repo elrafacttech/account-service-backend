@@ -11,7 +11,7 @@ import com.accountproject.api.dto.CostOfGoodsSoldDto;
 import com.accountproject.api.service.CostOfGoodsSoldService;
 
 @RestController
-@RequestMapping(value = "v1/api/user/costOfGoodsSold")
+@RequestMapping(value = "v1/api/business/costOfGoodsSold")
 public class CostOfGoodsSoldController {
 	
 	@Autowired
