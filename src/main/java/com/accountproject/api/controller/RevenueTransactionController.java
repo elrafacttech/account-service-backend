@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import com.accountproject.api.dto.res.RevenueSumDto;
 import com.accountproject.api.service.RevenueTransactionService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "v1/api/business/revenueTransaction")
 public class RevenueTransactionController {
 
@@ -34,6 +36,13 @@ public class RevenueTransactionController {
 	@GetMapping("/getRevenue")
 	public ResponseEntity<List<RevenueSumDto>> getRevenue() {
 		List<RevenueSumDto> list = transactionService.getRevenue();
+
+		return ResponseEntity.ok(list);
+	}
+
+	@GetMapping("/getAll")
+	public ResponseEntity<List<RevenueTransactionDto>> getAllRevenue() {
+		List<RevenueTransactionDto> list = transactionService.getAll();
 
 		return ResponseEntity.ok(list);
 	}

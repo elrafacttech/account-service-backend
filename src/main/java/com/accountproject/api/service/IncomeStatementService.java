@@ -6,6 +6,8 @@ public interface IncomeStatementService {
 	
 	public IncomeStatementRes addIncomeStmt();
 	
+	public IncomeStatementRes getIncomeStmt();
+	
 	
 
 }

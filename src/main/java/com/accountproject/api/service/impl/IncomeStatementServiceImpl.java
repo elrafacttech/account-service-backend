@@ -7,11 +7,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accountproject.api.dto.SalesDto;
 import com.accountproject.api.dto.res.CogstSumResDto;
 import com.accountproject.api.dto.res.IncomeStatementRes;
 import com.accountproject.api.dto.res.OperatingExpTranSumResDto;
 import com.accountproject.api.dto.res.RevenueSumDto;
 import com.accountproject.api.entity.IncomeStatement;
+import com.accountproject.api.entity.Sales;
 import com.accountproject.api.repo.CostOfGoodsSoldTransactionRepo;
 import com.accountproject.api.repo.IncomeStatementRepo;
 import com.accountproject.api.repo.OperatingExpensesTransactionRepo;
@@ -203,6 +205,13 @@ public class IncomeStatementServiceImpl implements IncomeStatementService {
 				.collect(Collectors.toList());
 
 		return dtoList;
+	}
+
+	@Override
+	public IncomeStatementRes getIncomeStmt() {
+		IncomeStatement statement = incomeStatementRepo.getById(1);
+		IncomeStatementRes response = modelMapper.map(statement, IncomeStatementRes.class);
+		return response;
 	}
 
 }
