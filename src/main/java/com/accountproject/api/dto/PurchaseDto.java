@@ -30,7 +30,7 @@ public class PurchaseDto {
 
 	private Double vat;
 
-	private String otherTaxes;
+	private Double otherTaxes;
 
 	private Double totalCost;
 

@@ -18,6 +18,11 @@ public interface CostOfGoodsSoldTransactionService {
 
 	List<CostOfGoodsSoldTransactionDto> getFromDateByBusinessId(int businessId, int code, String drcr, String fromDate);
 
-	List<CostOfGoodsSoldTransactionDto> getToDateByBusinessId(int businessId, int code, String drcr, String fromDate, String toDate);
+	List<CostOfGoodsSoldTransactionDto> getToDateByBusinessId(int businessId, int code, String drcr, String fromDate,
+			String toDate);
 
+	List<CostOfGoodsSoldTransactionDto> filter(String businessId, String code, String drcr, String fromDate,
+			String toDate);
+
+	List<CostOfGoodsSoldTransactionDto> getProdcut();
 }

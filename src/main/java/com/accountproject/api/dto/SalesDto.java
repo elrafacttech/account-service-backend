@@ -36,7 +36,7 @@ public class SalesDto {
 
 	private Double vat;
 
-	private String otherTaxes;
+	private Double otherTaxes;
 
 	private Double grossSales;
 }

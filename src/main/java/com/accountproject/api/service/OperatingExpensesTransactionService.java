@@ -18,4 +18,8 @@ public interface OperatingExpensesTransactionService {
 	List<OperatingExpensesTransactionDto> getFromDateByBusinessId(int businessId, int code, String drcr, String fromDate);
 
 	List<OperatingExpensesTransactionDto> getToDateByBusinessId(int businessId, int code, String drcr, String fromDate, String toDate);
+	
+	List<OperatingExpensesTransactionDto> filter(String businessId, String code, String drcr, String fromDate, String toDate);
+	
+	List<OperatingExpensesTransactionDto> getProdcut();
 }

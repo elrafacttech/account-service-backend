@@ -110,4 +110,30 @@ public class OperatingExpensesTransactionServiceImpl implements OperatingExpense
 		return response;
 	}
 
+	@Override
+	public List<OperatingExpensesTransactionDto> filter(String businessId, String code, String drcr, String fromDate,
+			String toDate) {
+		List<OperatingExpensesTransaction> transactions = transactionRepo.getFilteredTransactions(businessId, code, drcr,
+				fromDate, toDate);
+		List<OperatingExpensesTransactionDto> response = new ArrayList<>();
+		for (OperatingExpensesTransaction set : transactions) {
+			OperatingExpensesTransactionDto map = modelMapper.map(set, OperatingExpensesTransactionDto.class);
+			map.setBusinessid(set.getBusinessDetails().getBusinessId());
+			response.add(map);
+		}
+		return response;
+	}
+
+	@Override
+	public List<OperatingExpensesTransactionDto> getProdcut() {
+		List<OperatingExpensesTransaction> transactions = transactionRepo.getProduct();
+		List<OperatingExpensesTransactionDto> response = new ArrayList<>();
+		for (OperatingExpensesTransaction set : transactions) {
+			OperatingExpensesTransactionDto map = modelMapper.map(set, OperatingExpensesTransactionDto.class);
+			map.setBusinessid(set.getBusinessDetails().getBusinessId());
+			response.add(map);
+		}
+		return response;
+	}
+
 }

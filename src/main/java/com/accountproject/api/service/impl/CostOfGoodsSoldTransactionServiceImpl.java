@@ -96,10 +96,36 @@ public class CostOfGoodsSoldTransactionServiceImpl implements CostOfGoodsSoldTra
 	}
 
 	@Override
-	public List<CostOfGoodsSoldTransactionDto> getToDateByBusinessId(int businessId, int code, String drcr, String fromDate,
-			String toDate) {
+	public List<CostOfGoodsSoldTransactionDto> getToDateByBusinessId(int businessId, int code, String drcr,
+			String fromDate, String toDate) {
 		List<CostOfGoodsSoldTransaction> transactions = soldTransactionRepo.getToDateByBusinessId(businessId, code,
 				drcr, fromDate, toDate);
+		List<CostOfGoodsSoldTransactionDto> response = new ArrayList<>();
+		for (CostOfGoodsSoldTransaction set : transactions) {
+			CostOfGoodsSoldTransactionDto map = modelMapper.map(set, CostOfGoodsSoldTransactionDto.class);
+			map.setBusinessid(set.getBusinessDetails().getBusinessId());
+			response.add(map);
+		}
+		return response;
+	}
+
+	@Override
+	public List<CostOfGoodsSoldTransactionDto> filter(String businessId, String code, String drcr, String fromDate,
+			String toDate) {
+		List<CostOfGoodsSoldTransaction> transactions = soldTransactionRepo.getFilteredTransactions(businessId, code,
+				drcr, fromDate, toDate);
+		List<CostOfGoodsSoldTransactionDto> response = new ArrayList<>();
+		for (CostOfGoodsSoldTransaction set : transactions) {
+			CostOfGoodsSoldTransactionDto map = modelMapper.map(set, CostOfGoodsSoldTransactionDto.class);
+			map.setBusinessid(set.getBusinessDetails().getBusinessId());
+			response.add(map);
+		}
+		return response;
+	}
+
+	@Override
+	public List<CostOfGoodsSoldTransactionDto> getProdcut() {
+		List<CostOfGoodsSoldTransaction> transactions = soldTransactionRepo.getProduct();
 		List<CostOfGoodsSoldTransactionDto> response = new ArrayList<>();
 		for (CostOfGoodsSoldTransaction set : transactions) {
 			CostOfGoodsSoldTransactionDto map = modelMapper.map(set, CostOfGoodsSoldTransactionDto.class);

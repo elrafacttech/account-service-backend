@@ -21,5 +21,9 @@ public interface RevenueTransactionService {
 	List<RevenueTransactionDto> getFromDateByBusinessId(int businessId, int code, String drcr, String fromDate);
 
 	List<RevenueTransactionDto> getToDateByBusinessId(int businessId, int code, String drcr, String fromDate, String toDate);
+	
+	List<RevenueTransactionDto> filter(String businessId, String code, String drcr, String fromDate, String toDate);
+	
+	List<RevenueTransactionDto> getProdcut();
 
 }

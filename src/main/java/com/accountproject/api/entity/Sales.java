@@ -1,5 +1,6 @@
 package com.accountproject.api.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -66,7 +67,7 @@ public class Sales {
 	private Double vat;
 	
 	@Column(name = "other_taxes")
-	private String otherTaxes;
+	private Double otherTaxes;
 	
 	@Column(name = "gross_sales")
 	private Double grossSales;

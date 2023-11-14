@@ -65,7 +65,7 @@ public class RevenueTransactionServiceImpl implements RevenueTransactionService 
 
 	@Override
 	public List<RevenueTransactionDto> getProductByBusinessId(int businessId, int code) {
-		List<RevenueTransaction> revenueDto = transactionRepo.getProductByBusinessId(businessId,code);
+		List<RevenueTransaction> revenueDto = transactionRepo.getProductByBusinessId(businessId, code);
 		List<RevenueTransactionDto> response = new ArrayList<>();
 		for (RevenueTransaction set : revenueDto) {
 			RevenueTransactionDto map = modelMapper.map(set, RevenueTransactionDto.class);
@@ -77,7 +77,7 @@ public class RevenueTransactionServiceImpl implements RevenueTransactionService 
 
 	@Override
 	public List<RevenueTransactionDto> getDrCrByBusinessId(int businessId, int code, String drcr) {
-		List<RevenueTransaction> revenueDto = transactionRepo.getDrCrByBusinessId(businessId,code,drcr);
+		List<RevenueTransaction> revenueDto = transactionRepo.getDrCrByBusinessId(businessId, code, drcr);
 		List<RevenueTransactionDto> response = new ArrayList<>();
 		for (RevenueTransaction set : revenueDto) {
 			RevenueTransactionDto map = modelMapper.map(set, RevenueTransactionDto.class);
@@ -89,7 +89,7 @@ public class RevenueTransactionServiceImpl implements RevenueTransactionService 
 
 	@Override
 	public List<RevenueTransactionDto> getFromDateByBusinessId(int businessId, int code, String drcr, String fromDate) {
-		List<RevenueTransaction> revenueDto = transactionRepo.getFromDateByBusinessId(businessId,code,drcr,fromDate);
+		List<RevenueTransaction> revenueDto = transactionRepo.getFromDateByBusinessId(businessId, code, drcr, fromDate);
 		List<RevenueTransactionDto> response = new ArrayList<>();
 		for (RevenueTransaction set : revenueDto) {
 			RevenueTransactionDto map = modelMapper.map(set, RevenueTransactionDto.class);
@@ -108,6 +108,31 @@ public class RevenueTransactionServiceImpl implements RevenueTransactionService 
 		for (RevenueTransaction set : revenueDto) {
 			RevenueTransactionDto map = modelMapper.map(set, RevenueTransactionDto.class);
 			map.setBusinessid(set.getBusinessDetails().getBusinessId());
+			response.add(map);
+		}
+		return response;
+	}
+
+	@Override
+	public List<RevenueTransactionDto> filter(String businessId, String code, String drcr, String fromDate,
+			String toDate) {
+		List<RevenueTransaction> revenueDto = transactionRepo.getFilteredTransactions(businessId, code, drcr, fromDate,
+				toDate);
+		List<RevenueTransactionDto> response = new ArrayList<>();
+		for (RevenueTransaction set : revenueDto) {
+			RevenueTransactionDto map = modelMapper.map(set, RevenueTransactionDto.class);
+			map.setBusinessid(set.getBusinessDetails().getBusinessId());
+			response.add(map);
+		}
+		return response;
+	}
+
+	@Override
+	public List<RevenueTransactionDto> getProdcut() {
+		List<RevenueTransaction> transactions = transactionRepo.getProduct();
+		List<RevenueTransactionDto> response = new ArrayList<>();
+		for (RevenueTransaction set : transactions) {
+			RevenueTransactionDto map = modelMapper.map(set, RevenueTransactionDto.class);
 			response.add(map);
 		}
 		return response;

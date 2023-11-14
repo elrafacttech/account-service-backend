@@ -64,7 +64,7 @@ public class Purchase {
 	private Double vat;
 
 	@Column(name = "other_taxes")
-	private String otherTaxes;
+	private Double otherTaxes;
 
 	@Column(name = "total_cost")
 	private Double totalCost;

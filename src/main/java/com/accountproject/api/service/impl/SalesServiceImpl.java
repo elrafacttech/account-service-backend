@@ -2,6 +2,7 @@ package com.accountproject.api.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -40,6 +41,14 @@ public class SalesServiceImpl implements SalesService {
 	@Override
 	public SalesDto addSalesDetails(SalesDto salesDto) {
 		Sales sales = modelMapper.map(salesDto, Sales.class);
+		Date date = new Date();
+		sales.setDate(date);
+		sales.setInvoiceValue(salesDto.getUnitsSold() * salesDto.getUnitPrice());
+		if(salesDto.getVat()==null || salesDto.getVat()==0)
+			salesDto.setVat(0.0);
+		if(salesDto.getOtherTaxes()==null || salesDto.getOtherTaxes()==0)
+			salesDto.setOtherTaxes(0.0);
+		sales.setGrossSales(salesDto.getVat() + sales.getInvoiceValue() + salesDto.getOtherTaxes());
 		salesRepo.save(sales);
 		SalesDto response = modelMapper.map(sales, SalesDto.class);
 		return response;

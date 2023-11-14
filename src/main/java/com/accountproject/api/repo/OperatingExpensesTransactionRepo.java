@@ -40,4 +40,20 @@ public interface OperatingExpensesTransactionRepo extends JpaRepository<Operatin
 	List<OperatingExpensesTransaction> getToDateByBusinessId(@PathVariable(value = "businessId") int businessId,
 			@PathVariable(value = "productCode") int productCode, @PathVariable(value = "drcr") String drcr,
 			@PathVariable(value = "fromDate") String fromDate, @PathVariable(value = "toDate") String toDate);
+	
+	@Query(value = "SELECT * FROM operating_expenses_transaction WHERE "
+	        + "(:businessId IS NULL OR business_id = :businessId) "
+	        + "AND (:productCode IS NULL OR code = :productCode) "
+	        + "AND (:drcr IS NULL OR drcr = :drcr) "
+	        + "AND (:fromDate IS NULL OR DATE(operating_expenses_date) >= :fromDate) "
+	        + "AND (:toDate IS NULL OR DATE(operating_expenses_date) <= :toDate)", nativeQuery = true)
+	List<OperatingExpensesTransaction> getFilteredTransactions(
+			@PathVariable("businessId") String businessId,
+			@PathVariable("productCode") String productCode,
+			@PathVariable("drcr") String drcr,
+			@PathVariable("fromDate") String fromDate,
+			@PathVariable("toDate") String toDate);
+	
+	@Query(value = " SELECT * FROM operating_expenses_transaction GROUP BY code", nativeQuery = true)
+	List<OperatingExpensesTransaction> getProduct();
 }

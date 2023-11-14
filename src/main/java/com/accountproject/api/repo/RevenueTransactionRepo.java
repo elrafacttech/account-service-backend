@@ -45,4 +45,20 @@ public interface RevenueTransactionRepo extends JpaRepository<RevenueTransaction
 	List<RevenueTransaction> getToDateByBusinessId(@PathVariable(value = "businessId") int businessId,
 			@PathVariable(value = "productCode") int productCode,@PathVariable(value = "drcr") String drcr,
 			@PathVariable(value = "fromDate") String fromDate,@PathVariable(value = "toDate") String toDate);
+	
+	@Query(value = "SELECT * FROM revenue_transaction WHERE "
+	        + "(:businessId IS NULL OR business_id = :businessId) "
+	        + "AND (:productCode IS NULL OR code = :productCode) "
+	        + "AND (:drcr IS NULL OR drcr = :drcr) "
+	        + "AND (:fromDate IS NULL OR DATE(revenue_date) >= :fromDate) "
+	        + "AND (:toDate IS NULL OR DATE(revenue_date) <= :toDate)", nativeQuery = true)
+	List<RevenueTransaction> getFilteredTransactions(
+			@PathVariable("businessId") String businessId,
+			@PathVariable("productCode") String productCode,
+			@PathVariable("drcr") String drcr,
+			@PathVariable("fromDate") String fromDate,
+			@PathVariable("toDate") String toDate);
+	
+	@Query(value = " SELECT * FROM revenue_transaction GROUP BY code", nativeQuery = true)
+	List<RevenueTransaction> getProduct();
 }
