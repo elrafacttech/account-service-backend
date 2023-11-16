@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.accountproject.api.dto.BusinessDetailsDto;
 import com.accountproject.api.entity.BusinessDetails;
-import com.accountproject.api.repo.BusinessDetailsRepo;
+import com.accountproject.api.repository.BusinessDetailsRepo;
 import com.accountproject.api.service.BusinessDetailsService;
 
 @Service

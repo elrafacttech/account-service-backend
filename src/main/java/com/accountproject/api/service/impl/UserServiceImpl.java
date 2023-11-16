@@ -1,54 +1,57 @@
 package com.accountproject.api.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.accountproject.api.dto.req.AuthRequestDto;
-import com.accountproject.api.dto.req.UserRequestDto;
-import com.accountproject.api.dto.res.LoginResDto;
-import com.accountproject.api.dto.res.UserResponseDto;
+import com.accountproject.api.config.CustomPasswordEncoder;
+import com.accountproject.api.dto.req.SignUpRequest;
 import com.accountproject.api.entity.Users;
-import com.accountproject.api.repo.UserRepo;
+import com.accountproject.api.repository.UserRepo;
 import com.accountproject.api.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserRepo userRepo;
+	UserRepo userRepository;
+	
+	@Autowired
+	private CustomPasswordEncoder passwordEncoder;
 
 	@Override
-	public UserResponseDto createUser(UserRequestDto requestDto) {
-		Users user = new Users();
-		user.setUserName(requestDto.getUserName());
-		user.setPassword(requestDto.getPassword());
-		userRepo.save(user);
-		// UserResponseDto responseDto = modelMapper.map(user,UserResponseDto.class);
-		UserResponseDto responseDto = new UserResponseDto();
-		responseDto.setUserName(user.getUserName());
-		responseDto.setPassword(user.getPassword());
-		return responseDto;
-	}
+	public String createUser(SignUpRequest request) {
 
-	@Override
-	public UserResponseDto getByUserName(String userName) {
-		Users users = userRepo.findByUserName(userName);
-
-		return null;
-	}
-
-	@Override
-	public LoginResDto loginUser(AuthRequestDto loginDetails) {
-		LoginResDto response = new LoginResDto();
-		Users user = userRepo.findByUserName(loginDetails.getUsername());
-		if (loginDetails.getPassword().matches(user.getPassword())) {
-			response.setUserId(user.getUserId());
-			response.setUsername(user.getUserName());
-			return response;
-		}else {
-			return response;
+		if (userRepository.existsByUsername(request.getUsername())) {
+			return  "User Name already exist by this name";
 		}
-		
+		if (userRepository.existsByEmail(request.getEmail())) {
+			return "Mail Id already exist by this email";
+		}
+
+		var user = Users.builder().username(request.getUsername()).email(request.getEmail())
+				// .confirmPassword(passwordEncoder.encode(request.getConfirmPassword()))
+				.password(passwordEncoder.encode(request.getPassword()))
+				// .otherPassword(passwordEncoder.encode(request.getOtherPassword()))
+				.confirmPassword(passwordEncoder.encode(request.getConfirmPassword()))
+				.phoneNumber(request.getPhoneNumber()).build();
+		userRepository.save(user);
+		return "User created successfully";
 	}
+
+	@Override
+	public UserDetailsService userDetailsService() {
+		return new UserDetailsService() {
+			@Override
+			public UserDetails loadUserByUsername(String username) {
+				return userRepository.findByUsername(username)
+						.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+			}
+		};
+	}
+
+
 
 }

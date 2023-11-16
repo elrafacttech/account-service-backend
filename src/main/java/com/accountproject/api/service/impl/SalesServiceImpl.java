@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.accountproject.api.dto.SalesDto;
 import com.accountproject.api.dto.res.SalesResDto;
 import com.accountproject.api.entity.Sales;
-import com.accountproject.api.repo.SalesRepo;
+import com.accountproject.api.repository.SalesRepo;
 import com.accountproject.api.service.SalesService;
 
 @Service

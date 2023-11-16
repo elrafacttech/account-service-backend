@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.accountproject.api.dto.RevenueTransactionDto;
 import com.accountproject.api.dto.res.RevenueSumDto;
 import com.accountproject.api.entity.RevenueTransaction;
-import com.accountproject.api.repo.RevenueTransactionRepo;
+import com.accountproject.api.repository.RevenueTransactionRepo;
 import com.accountproject.api.service.RevenueTransactionService;
 
 @Service

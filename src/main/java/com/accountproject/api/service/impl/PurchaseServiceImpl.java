@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.accountproject.api.dto.PurchaseDto;
 import com.accountproject.api.dto.res.PurchaseResDto;
 import com.accountproject.api.entity.Purchase;
-import com.accountproject.api.repo.PurchaseRepo;
+import com.accountproject.api.repository.PurchaseRepo;
 import com.accountproject.api.service.PurchaseService;
 
 @Service

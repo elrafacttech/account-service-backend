@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.accountproject.api.dto.OperatingExpensesTransactionDto;
 import com.accountproject.api.entity.OperatingExpensesTransaction;
-import com.accountproject.api.repo.OperatingExpensesTransactionRepo;
+import com.accountproject.api.repository.OperatingExpensesTransactionRepo;
 import com.accountproject.api.service.OperatingExpensesTransactionService;
 
 @Service

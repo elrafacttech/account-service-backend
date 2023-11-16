@@ -1,16 +1,15 @@
 package com.accountproject.api.service;
 
-import com.accountproject.api.dto.req.AuthRequestDto;
-import com.accountproject.api.dto.req.UserRequestDto;
-import com.accountproject.api.dto.res.LoginResDto;
-import com.accountproject.api.dto.res.UserResponseDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.accountproject.api.dto.req.SignUpRequest;
 
 public interface UserService {
+	
+	/** Create a new user in UserInfo */
+	String createUser(SignUpRequest request);
+	
+	UserDetailsService userDetailsService();
 
-	UserResponseDto createUser(UserRequestDto signUp);
-
-	UserResponseDto getByUserName(String userName);
-
-	LoginResDto loginUser(AuthRequestDto loginDetails);
 
 }

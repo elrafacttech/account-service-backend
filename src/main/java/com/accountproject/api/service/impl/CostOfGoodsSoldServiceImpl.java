@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.accountproject.api.dto.CostOfGoodsSoldDto;
 import com.accountproject.api.entity.CostOfGoodsSold;
-import com.accountproject.api.repo.CostOfGoodsSoldRepo;
+import com.accountproject.api.repository.CostOfGoodsSoldRepo;
 import com.accountproject.api.service.CostOfGoodsSoldService;
 
 @Service

@@ -2,14 +2,11 @@ package com.accountproject.api.entity;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,10 +21,6 @@ public class BusinessDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "business_id")
 	private Integer businessId;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	private Users users;
 	
 	@Column(name = "business_name")
 	private String businessName; // organization name

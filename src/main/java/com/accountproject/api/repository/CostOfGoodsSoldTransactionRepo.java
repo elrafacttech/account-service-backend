@@ -1,4 +1,4 @@
-package com.accountproject.api.repo;
+package com.accountproject.api.repository;
 
 import java.util.List;
 

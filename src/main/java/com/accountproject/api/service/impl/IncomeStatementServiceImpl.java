@@ -12,10 +12,10 @@ import com.accountproject.api.dto.res.IncomeStatementRes;
 import com.accountproject.api.dto.res.OperatingExpTranSumResDto;
 import com.accountproject.api.dto.res.RevenueSumDto;
 import com.accountproject.api.entity.IncomeStatement;
-import com.accountproject.api.repo.CostOfGoodsSoldTransactionRepo;
-import com.accountproject.api.repo.IncomeStatementRepo;
-import com.accountproject.api.repo.OperatingExpensesTransactionRepo;
-import com.accountproject.api.repo.RevenueTransactionRepo;
+import com.accountproject.api.repository.CostOfGoodsSoldTransactionRepo;
+import com.accountproject.api.repository.IncomeStatementRepo;
+import com.accountproject.api.repository.OperatingExpensesTransactionRepo;
+import com.accountproject.api.repository.RevenueTransactionRepo;
 import com.accountproject.api.service.IncomeStatementService;
 
 @Service
