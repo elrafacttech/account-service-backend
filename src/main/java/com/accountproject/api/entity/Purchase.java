@@ -35,12 +35,8 @@ public class Purchase {
 	@DateTimeFormat(pattern = "yyyy-mm-dd HH:MM:SS")
 	private Date date;
 
-	@Column(name = "payment_receipt")
-	private String paymentReceipt; // cash/credit
-
-	// private String invoice;
-
-	// private String customer;
+	@Column(name = "payment_Type")
+	private String paymentType; // cash/credit
 
 	@Column(name = "product_name")
 	private String productName;
